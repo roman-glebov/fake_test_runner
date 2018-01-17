@@ -1,0 +1,2 @@
+module FakeTestRunner
+end
