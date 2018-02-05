@@ -1,24 +1,16 @@
 class TestRun < Hanami::Entity
   def start_test
-    sleep rand(7..10)
-    running_status
-    sleep rand(5..10)
-    end_status
-  end
-
-  def stop_test
-    update_test_run_info('stopped')
+    %w(running finished).each do |status|
+      sleep rand(7..10)
+      return stop_test if yield
+      update_test_run_info(status)
+    end
   end
 
   private
 
-  def running_status
-    update_test_run_info('running')
-  end
-
-  def end_status
-    status = %w[finished failed].sample
-    update_test_run_info(status)
+  def stop_test
+    update_test_run_info('stopped')
   end
 
   def update_test_run_info(status)

@@ -1,9 +1,12 @@
 source 'https://rubygems.org'
 
 gem 'bunny'
-gem 'rake'
+gem 'connection_pool'
+gem 'dry-events'
 gem 'hanami',       '~> 1.1'
 gem 'hanami-model', '~> 1.1'
+gem 'rake'
+gem 'redis'
 
 gem 'pg'
 
@@ -17,13 +20,13 @@ end
 
 group :test, :development do
   gem 'dotenv', '~> 2.0'
-  gem 'pry-byebug'
   gem 'pry'
+  gem 'pry-byebug'
 end
 
 group :test do
-  gem 'minitest'
   gem 'capybara'
+  gem 'minitest'
 end
 
 group :production do
